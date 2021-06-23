@@ -13,6 +13,6 @@ const loopThis = () => {
   setTimeout(() => progressFunc('75%', 'Showing record to recording companies'), 10000);
   setTimeout(() => progressFunc('95%', 'Issuing record deal'), 12000);
   setTimeout(() => progressFunc('0%', 'Deal is off starting over'), 15000);
-  setInterval(loopThis, 16000);
+  setTimeout(loopThis, 16000);
 }
 loopThis();
