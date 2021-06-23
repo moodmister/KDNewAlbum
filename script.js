@@ -6,13 +6,22 @@ const progressFunc = (widthVar, textString) => {
   process.text(textString);
 };
 
+const steps = [
+  { msg: 'Deal is off starting over', timeout: 15000, percent: '0%'},
+  { msg: 'Issuing record deal', timeout: 12000, percent: '95%'},
+  { msg: 'Showing record to recording companies', timeout: 10000, percent: '75%'},
+  { msg: 'Renting recording studio', timeout: 6000, percent: '50%'},
+  { msg: 'Writing lyrics', timeout: 4000, percent: '20%'},
+  { msg: 'Hyping fans', timeout: 2000, percent: '10%'}
+];
+
 const loopThis = () => {
-  setTimeout(() => progressFunc('10%', 'Hyping fans'), 2000);
-  setTimeout(() => progressFunc('20%', 'Writing lyrics'), 4000);
-  setTimeout(() => progressFunc('50%', 'Renting recording studio'), 6000);
-  setTimeout(() => progressFunc('75%', 'Showing record to recording companies'), 10000);
-  setTimeout(() => progressFunc('95%', 'Issuing record deal'), 12000);
-  setTimeout(() => progressFunc('0%', 'Deal is off starting over'), 15000);
-  setTimeout(loopThis, 16000);
+  if (steps.length == 0) return;
+
+  const { msg, timeout, percent } = steps.pop();
+
+  progressFunc(percent, msg);
+
+  setTimeout(loopThis, timeout);
 }
 loopThis();
